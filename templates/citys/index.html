@@ -5,12 +5,43 @@
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
     <title>Page Title</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
     <script src='main.js'></script>
 </head>
 <body>
 
-    <h1>"Holis perros"</h1>
+    <h1>"Ciudades n.n"</h1>
+
+    <table class="table table-dark">
+        <thead class="thead-light">
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>CountryCode</th>
+                <th>District</th>
+                <th>Pupulation</th>
+                <th>Actions</th>
+
+            </tr>
+        </thead>
+        <tbody>
+            {% for city in citys %}
+             <tr>
+                <td>{{city[0] }}</td>
+                <td>{{city[1] }}</td>
+                <td>{{city[2] }}</td>
+                <td>{{city[3] }}</td>
+                <th>{{city[4] }}</th>
+                <th><a href="/edit/{{city[0]}}">Edit</a>
+                     |
+                    <a href="/destroy/{{city[0]}}">Delete</a>
+                </th>
+            </tr>   
+            {% endfor %}
+            
+        </tbody>
+    </table>
     
 </body>
 </html>
