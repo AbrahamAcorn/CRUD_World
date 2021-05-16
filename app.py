@@ -36,7 +36,7 @@ def destroy(ids):
     cursor.execute("DELETE FROM `city` WHERE ID= %s",(ids))
     conn.commit()
     
-    return redirect('/')
+    return redirect('/city')
 
 @app.route('/edit/<int:ids>')
 def edit(ids):

@@ -28,11 +28,11 @@
   <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
   <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
   <!-- Nucleo Icons -->
-  <link href="/css/nucleo-icons.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/nucleo-icons.css') }}" />
   <!-- CSS Files -->
-  <link href="/css/blk-design-system.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/blk-design-system.css') }}"/>
   <!-- CSS Just for demo purpose, don't include it in your project -->
-  <link href="/demo/demo.css" rel="stylesheet" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='demo/demo.css') }}" />
 </head>
 
 <body class="landing-page">
