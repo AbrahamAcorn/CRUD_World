@@ -7,6 +7,11 @@
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nucleo-icons.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blk-design-system.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='demo/demo.css') }}" />
     <script src='main.js'></script>
 </head>
 <body>
@@ -33,7 +38,7 @@
                 <td>{{city[2] }}</td>
                 <td>{{city[3] }}</td>
                 <th>{{city[4] }}</th>
-                <th><a href="/edit/{{city[0]}}">Edit</a>
+                <th><a href="/edit/{{city[0]}}" class>Edit</a>
                      |
                     <a href="/destroy/{{city[0]}}">Delete</a>
                 </th>
