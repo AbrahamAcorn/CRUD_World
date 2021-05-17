@@ -1,21 +1,37 @@
-<form method="post" action="/store" enctype="multipart/form-data">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet" />
+    <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/nucleo-icons.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/blk-design-system.css') }}"/>
+    <link rel="stylesheet" href="{{ url_for('static', filename='demo/demo.css') }}" />
+    <title>Document</title>
+</head>
+<body>
+    <form method="post" action="/store" enctype="multipart/form-data">
     
-    <h1>Mertiendo datos :v</h1>
-    ID:
-    <input type="text" name="ids" id="ids">
-    <br>
-    Nombre:
-    <input type="text" name="nombre" id="nombre">
-    <br>
-    Codigo:
-    <input type="text" name="code" id="code">
-    <br>
-    Distrito:
-    <input type="text" name="district" id="district">
-    <br>
-    Poblacion:
-    <input type="number" name="popul" id="popul">
-    <br><br>
-    <input type="submit" value="Add">
-    
-</form>
+        <h1>Mertiendo datos :v</h1>
+        ID:
+        <input type="text" name="ids" id="ids">
+        <br>
+        Nombre:
+        <input type="text" name="nombre" id="nombre">
+        <br>
+        Codigo:
+        <input type="text" name="code" id="code">
+        <br>
+        Distrito:
+        <input type="text" name="district" id="district">
+        <br>
+        Poblacion:
+        <input type="number" name="popul" id="popul">
+        <br><br>
+        <input type="submit" value="Add">
+        
+    </form>
+</body>
+</html>
