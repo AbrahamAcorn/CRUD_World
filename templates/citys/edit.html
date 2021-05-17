@@ -12,15 +12,35 @@
     <title>Document</title>
 </head>
 <body>
-    Editando
+    <h1>Editando</h1>
 
 {% for city in citys %}
 
-{{city[0] }}
-{{city[1] }}
-{{city[2] }}
-{{city[3] }}
-{{city[4] }}
+
+
+<h1>{{city[0] }}</h1>
+
+<form method="post" action="/update" enctype="multipart/form-data">
+    
+    <h1>Mertiendo datos :v</h1>
+    ID:
+    <input type="text" value="{{city[0] }}" name="iden" id="iden">
+    <br>
+    Nombre:
+    <input type="text" value="{{city[1] }}" name="nombre" id="nombre">
+    <br>
+    Codigo:
+    <input type="text" value="{{city[2] }}" name="code" id="code">
+    <br>
+    Distrito:
+    <input type="text" value="{{city[3] }}" name="district" id="district">
+    <br>
+    Poblacion:
+    <input type="number" value="{{city[4] }}" name="popul" id="popul">
+    <br><br>
+    <input type="submit" value="Add">
+    
+</form>
 
 {% endfor %}
 </body>

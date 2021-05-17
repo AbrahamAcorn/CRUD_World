@@ -49,6 +49,20 @@ def edit(ids):
     print(citys)
     return render_template('citys/edit.html', citys=citys)
 
+@app.route('/update', methods=['POST'])
+def method_name():
+    _nombre=request.form['nombre']
+    _code=request.form['code']
+    _distro=request.form['district']
+    _pob=request.form['popul']
+    _id=request.form['iden']
+
+    sql="UPDATE `city` SET `Name`='"+_nombre+"',`CountryCode`='"+_code+"',`District`='"+_distro+"',`Population`="+_pob+" WHERE ID="+_id
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute(sql)
+    conn.commit()
+    return redirect('/city')
 @app.route('/create')
 def create():
    return render_template('citys/create.html')
