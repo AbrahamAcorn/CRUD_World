@@ -25,9 +25,9 @@ def maincity():
     cursor=conn.cursor()
     cursor.execute(sql)
     citys=cursor.fetchall()
-    print(citys)
     conn.commit()
     return render_template('citys/index.html', citys=citys)
+
 @app.route('/destroy/<int:ids>')
 def destroy(ids):
    
@@ -41,7 +41,14 @@ def destroy(ids):
 @app.route('/edit/<int:ids>')
 def edit(ids):
 
-   return render_template('citys/edit.html')
+    conn=mysql.connect()
+    cursor=conn.cursor()
+    cursor.execute("SELECT * FROM `city` WHERE ID = %s",(ids))
+    citys=cursor.fetchall()
+    conn.commit()
+    print(citys)
+    return render_template('citys/edit.html', citys=citys)
+
 @app.route('/create')
 def create():
    return render_template('citys/create.html')
