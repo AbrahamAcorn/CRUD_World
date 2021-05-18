@@ -21,8 +21,9 @@
 <h1>{{city[0] }}</h1>
 
 <form method="post" action="/update" enctype="multipart/form-data">
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}"/>
     
-    <h1>Mertiendo datos :v</h1>
+    <h1>Metiendo datos :v</h1>
     ID:
     <input type="text" value="{{city[0] }}" name="iden" id="iden">
     <br>
