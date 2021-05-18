@@ -35,12 +35,10 @@ def destroy(ids):
     cursor=conn.cursor()
     cursor.execute("DELETE FROM `city` WHERE ID= %s",(ids))
     conn.commit()
-    
     return redirect('/city')
 
 @app.route('/edit/<int:ids>')
 def edit(ids):
-
     conn=mysql.connect()
     cursor=conn.cursor()
     cursor.execute("SELECT * FROM `city` WHERE ID = %s",(ids))
@@ -63,6 +61,7 @@ def method_name():
     cursor.execute(sql)
     conn.commit()
     return redirect('/city')
+
 @app.route('/create')
 def create():
    return render_template('citys/create.html')
@@ -74,19 +73,13 @@ def storage():
     _code=request.form['code']
     _distro=request.form['district']
     _pob=request.form['popul']
-
-    
-
     sql="INSERT INTO city(`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES (NULL, '"+_nombre+"','"+_code+"', '"+_distro+"',"+_pob+");"
-
-    
+   
     conn=mysql.connect()
     cursor=conn.cursor()
     cursor.execute(sql)
     conn.commit()
-
     return render_template('citys/create.html')
-
 
 
 if __name__=='__main__':
