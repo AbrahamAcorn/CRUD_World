@@ -1,15 +1,19 @@
 from flask import Flask
 from flask import render_template, request, redirect
 from flaskext.mysql import MySQL
+from flask_wtf.csrf import CSRFProtect
 
 
 
 app=Flask(__name__)
 
+app.secret_key='6548H62745h6e5uv65e4AQ'
+csrf= CSRFProtect(app)
+
 @app.route("/")
 def index():
 
-    return render_template('/landing-page.html')
+    return render_template('citys/index.html')
 
 mysql= MySQL()
 app.config['MYSQL_DATABASE_HOST']='localhost'
@@ -47,7 +51,7 @@ def edit(ids):
     print(citys)
     return render_template('citys/edit.html', citys=citys)
 
-@app.route('/update', methods=['POST'])
+@app.route('/update', methods=['POST', 'GET'])
 def method_name():
     _nombre=request.form['nombre']
     _code=request.form['code']
@@ -81,6 +85,10 @@ def storage():
     conn.commit()
     return render_template('citys/create.html')
 
+@app.route("/register")
+def registr():
+
+    return render_template('register-page.html')
 
 if __name__=='__main__':
     app.run(debug=True)
