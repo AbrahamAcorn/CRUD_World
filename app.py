@@ -3,7 +3,6 @@ from flask import render_template, request, redirect
 from flask.globals import session
 from flaskext.mysql import MySQL
 from flask_wtf.csrf import CSRFProtect
-from flask_mysqldb import MySQL
 import MySQLdb.cursors
 import re
 
@@ -88,42 +87,52 @@ def storage():
     cursor.execute(sql)
     conn.commit()
     return render_template('citys/create.html')
+    
+@app.route('/login')
+def logi():
+   return render_template('login.html')
 
-@app.route('/login', methods =['GET', 'POST'])
+@app.route('/register')
+def regis():
+   return render_template('register.html')
+
+@app.route('/logged', methods =['GET', 'POST'])
 def login():
     msg = ''
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE username = % s AND password = % s', (username, password, ))
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute('SELECT * FROM accounts WHERE user = % s AND contrasena = % s', (username, password, ))
         account = cursor.fetchone()
         if account:
             session['loggedin'] = True
-            session['id'] = account['id']
-            session['username'] = account['username']
+            session['id'] = account[0]
+            session['username'] = account[1]
             msg = 'Logged in successfully !'
-            return render_template('index.html', msg = msg)
+            return render_template('citys/index.html', msg = msg)
         else:
-            msg = 'Incorrect username / password !'
+            msg = 'Incorrect username o password !'
     return render_template('login.html', msg = msg)
-  
+ 
 @app.route('/logout')
 def logout():
     session.pop('loggedin', None)
     session.pop('id', None)
     session.pop('username', None)
-    return redirect(url_for('login'))
+    return redirect('login.html')
   
-@app.route('/register', methods =['GET', 'POST'])
+@app.route('/registred', methods =['GET', 'POST'])
 def register():
     msg = ''
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form and 'email' in request.form :
         username = request.form['username']
         password = request.form['password']
         email = request.form['email']
-        cursor = mysql.connection.cursor(MySQLdb.cursors.DictCursor)
-        cursor.execute('SELECT * FROM accounts WHERE username = % s', (username, ))
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute('SELECT * FROM accounts WHERE user = %s', (username, ))
         account = cursor.fetchone()
         if account:
             msg = 'Account already exists !'
@@ -134,8 +143,8 @@ def register():
         elif not username or not password or not email:
             msg = 'Please fill out the form !'
         else:
-            cursor.execute('INSERT INTO accounts VALUES (NULL, % s, % s, % s)', (username, password, email, ))
-            mysql.connection.commit()
+            cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, email, password,))
+            conn.commit()
             msg = 'You have successfully registered !'
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
