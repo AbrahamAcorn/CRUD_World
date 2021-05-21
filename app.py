@@ -4,6 +4,7 @@ from flask.globals import session
 from flaskext.mysql import MySQL
 from flask_wtf.csrf import CSRFProtect
 import MySQLdb.cursors
+import bcrypt
 import re
 
 
@@ -12,12 +13,6 @@ app=Flask(__name__)
 
 app.secret_key='6548H62745h6e5uv65e4AQ'
 csrf= CSRFProtect(app)
-
-@app.route("/")
-def index():
-
-    return render_template('citys/index.html')
-
 mysql= MySQL()
 app.config['MYSQL_DATABASE_HOST']='localhost'
 app.config['MYSQL_DATABASE_USER']='root'
@@ -25,19 +20,28 @@ app.config['MYSQL_DATABASE_PASSWORD']=''
 app.config['MYSQL_DATABASE_DB']='world'
 mysql.init_app(app)
 
+
+
+@app.route("/")
+def index():
+    if 'username' in session:
+        return redirect("/city")
+    return render_template("/landing-page.html")
+
+
 @app.route('/city')
 def maincity():
-    sql="SELECT * FROM `city`;"
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    cursor.execute(sql)
-    citys=cursor.fetchall()
-    conn.commit()
-    return render_template('citys/index.html', citys=citys)
-
+    if 'username' in session:
+        sql="SELECT * FROM `city`;"
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute(sql)
+        citys=cursor.fetchall()
+        conn.commit()
+        return render_template('citys/index.html', citys=citys)
+    return redirect("/login")
 @app.route('/destroy/<int:ids>')
 def destroy(ids):
-   
     conn=mysql.connect()
     cursor=conn.cursor()
     cursor.execute("DELETE FROM `city` WHERE ID= %s",(ids))
@@ -90,7 +94,8 @@ def storage():
     
 @app.route('/login')
 def logi():
-   return render_template('login.html')
+    
+    return render_template('login.html')
 
 @app.route('/register')
 def regis():
@@ -111,7 +116,7 @@ def login():
             session['id'] = account[0]
             session['username'] = account[1]
             msg = 'Logged in successfully !'
-            return render_template('citys/index.html', msg = msg)
+            return redirect('/city', msg = msg)
         else:
             msg = 'Incorrect username o password !'
     return render_template('login.html', msg = msg)
