@@ -26,7 +26,7 @@ mysql.init_app(app)
 def index():
     if 'username' in session:
         return redirect("/city")
-    return render_template("/landing-page.html")
+    return render_template("/landing.html")
 
 
 @app.route('/city')
@@ -94,7 +94,6 @@ def storage():
     
 @app.route('/login')
 def logi():
-    
     return render_template('login.html')
 
 @app.route('/register')
@@ -154,6 +153,10 @@ def register():
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
+
+@app.route("/profile")
+def func():
+    return render_template("profile.html")
 
 if __name__=='__main__':
     app.run(debug=True)
