@@ -1,12 +1,11 @@
 from flask import Flask
-from flask import render_template, request, redirect
+from flask import render_template, request, redirect, flash
 from flask.globals import session
 from flaskext.mysql import MySQL
 from flask_wtf.csrf import CSRFProtect
 import MySQLdb.cursors
 import bcrypt
 import re
-
 
 
 app=Flask(__name__)
@@ -157,6 +156,7 @@ def register():
             cursor.execute('INSERT INTO accounts VALUES (NULL, %s, %s, %s)', (username, email, password,))
             conn.commit()
             msg = 'You have successfully registered !'
+            return redirect("/login")
     elif request.method == 'POST':
         msg = 'Please fill out the form !'
     return render_template('register.html', msg = msg)
