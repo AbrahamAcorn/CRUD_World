@@ -75,8 +75,15 @@ def method_name():
 
 @app.route('/create')
 def create():
-   return render_template('citys/create.html')
-
+    if 'username' in session:
+        sql="SELECT CODE FROM `country` ORDER BY `CODE` ASC"
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute(sql)
+        codes=cursor.fetchall()
+        conn.commit()
+        return render_template('citys/create.html',codes=codes)
+    return redirect("/login")
 
 @app.route('/store', methods=['POST'])
 def storage():
@@ -90,7 +97,7 @@ def storage():
     cursor=conn.cursor()
     cursor.execute(sql)
     conn.commit()
-    return render_template('citys/create.html')
+    return redirect('/create')
     
 @app.route('/login')
 def logi():
@@ -115,7 +122,7 @@ def login():
             session['id'] = account[0]
             session['username'] = account[1]
             msg = 'Logged in successfully !'
-            return redirect('/city', msg = msg)
+            return redirect('/city')
         else:
             msg = 'Incorrect username o password !'
     return render_template('login.html', msg = msg)
@@ -155,8 +162,16 @@ def register():
     return render_template('register.html', msg = msg)
 
 @app.route("/profile")
-def func():
+def profile():
     return render_template("profile.html")
+
+@app.route("/countrys")
+def countrys():
+    return render_template("countrys/country.html")
+
+@app.route("/languages")
+def lenguas():
+    return render_template("lenguas/leguas.html")
 
 if __name__=='__main__':
     app.run(debug=True)
