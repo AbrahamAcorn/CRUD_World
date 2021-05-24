@@ -86,20 +86,25 @@ def create():
 
 @app.route('/store', methods=['POST'])
 def storage():
-    _nombre=request.form['nombre']
-    _code=request.form['code']
-    _distro=request.form['district']
-    _pob=request.form['popul']
-    sql="INSERT INTO city(`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES (NULL, '"+_nombre+"','"+_code+"', '"+_distro+"',"+_pob+");"
+    if request.method == 'POST':
+        _nombre=request.form['nombre']
+        _code=request.form['code']
+        _distro=request.form['district']
+        _pob=request.form['popul']
+        sql="INSERT INTO city(`ID`, `Name`, `CountryCode`, `District`, `Population`) VALUES (NULL, '"+_nombre+"','"+_code+"', '"+_distro+"',"+_pob+");"
    
-    conn=mysql.connect()
-    cursor=conn.cursor()
-    cursor.execute(sql)
-    conn.commit()
-    return redirect('/create')
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute(sql)
+        conn.commit()
+        return render_template('/create.html')
+
+    return redirect("/")
     
 @app.route('/login')
 def logi():
+    if 'username' in session:
+        return redirect("/")
     return render_template('login.html')
 
 @app.route('/register')
