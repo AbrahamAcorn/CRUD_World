@@ -58,7 +58,7 @@ def edit(ids):
     return render_template('citys/edit.html', citys=citys)
 
 @app.route('/update', methods=['POST', 'GET'])
-def method_name():
+def actualiza():
     _nombre=request.form['nombre']
     _code=request.form['code']
     _distro=request.form['district']
@@ -167,11 +167,27 @@ def profile():
 
 @app.route("/countrys")
 def countrys():
-    return render_template("countrys/country.html")
+    if 'username' in session:
+        sql="SELECT * FROM `city`;"
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute(sql)
+        citys=cursor.fetchall()
+        conn.commit()
+        return render_template('countrys/country.html', citys=citys)
+    return redirect("/login")
 
 @app.route("/languages")
 def lenguas():
-    return render_template("lenguas/leguas.html")
+    if 'username' in session:
+        sql="SELECT * FROM `city`;"
+        conn=mysql.connect()
+        cursor=conn.cursor()
+        cursor.execute(sql)
+        citys=cursor.fetchall()
+        conn.commit()
+        return render_template('lenguas/lenguas.html', citys=citys)
+    return redirect("/login")
 
 if __name__=='__main__':
     app.run(debug=True)
