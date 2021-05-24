@@ -168,25 +168,25 @@ def profile():
 @app.route("/countrys")
 def countrys():
     if 'username' in session:
-        sql="SELECT * FROM `city`;"
+        sql="SELECT * FROM `country`;"
         conn=mysql.connect()
         cursor=conn.cursor()
         cursor.execute(sql)
-        citys=cursor.fetchall()
+        countrys=cursor.fetchall()
         conn.commit()
-        return render_template('countrys/country.html', citys=citys)
+        return render_template('countrys/country.html', countrys=countrys)
     return redirect("/login")
 
 @app.route("/languages")
 def lenguas():
     if 'username' in session:
-        sql="SELECT * FROM `city`;"
+        sql="SELECT * FROM `countrylanguage`;"
         conn=mysql.connect()
         cursor=conn.cursor()
         cursor.execute(sql)
-        citys=cursor.fetchall()
+        lenguas=cursor.fetchall()
         conn.commit()
-        return render_template('lenguas/lenguas.html', citys=citys)
+        return render_template('lenguas/lenguas.html', lenguas=lenguas)
     return redirect("/login")
 
 if __name__=='__main__':
