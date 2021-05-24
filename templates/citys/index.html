@@ -4,7 +4,7 @@
     
     <meta charset='utf-8'>
     <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <title>Page Title</title>
+    <title>Ciudades</title>
     <meta name='viewport' content='width=device-width, initial-scale=1'>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel='stylesheet' type='text/css' media='screen' href='main.css'>
@@ -17,72 +17,78 @@
     <script src='main.js'></script>
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg fixed-top " color-on-scroll="100">
-        <div class="container">
-          <div class="navbar-translate">
-            <a class="navbar-brand" href="/" rel="tooltip" title="CRUD World" data-placement="bottom" target="_blank">
-              <span>World</span> Design System
-            </a>
-            <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-bar bar1"></span>
-              <span class="navbar-toggler-bar bar2"></span>
-              <span class="navbar-toggler-bar bar3"></span>
-            </button>
-          </div>
-          <div class="collapse navbar-collapse justify-content-end" id="navigation">
-            <div class="navbar-collapse-header">
-              <div class="row">
-                <div class="col-6 collapse-brand">
-                  <a>
-                    WDS
-                  </a>
-                </div>
-                <div class="col-6 collapse-close text-right">
-                  <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
-                    <i class="tim-icons icon-simple-remove"></i>
-                  </button>
-                </div>
-              </div>
+  <nav class="navbar navbar-expand-lg fixed-top " color-on-scroll="100">
+    <div class="container">
+      <div class="navbar-translate">
+        <a class="navbar-brand" href="/" rel="tooltip" title="CRUD World" data-placement="bottom" target="_blank">
+          <span>World</span> Design System
+        </a>
+        <button class="navbar-toggler navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
+        </button>
+      </div>
+      <div class="collapse navbar-collapse justify-content-end" id="navigation">
+        <div class="navbar-collapse-header">
+          <div class="row">
+            <div class="col-6 collapse-brand">
+              <a>
+                WDS
+              </a>
             </div>
-            <ul class="navbar-nav">
-              <li class="nav-item p-0">
-                <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com" target="_blank">
-                  <i class="fab fa-twitter"></i>
-                  <p class="d-lg-none d-xl-none">Twitter</p>
-                </a>
-              </li>
-              <li class="nav-item p-0">
-                <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com" target="_blank">
-                  <i class="fab fa-facebook-square"></i>
-                  <p class="d-lg-none d-xl-none">Facebook</p>
-                </a>
-              </li>
-              <li class="nav-item p-0">
-                <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com" target="_blank">
-                  <i class="fab fa-instagram"></i>
-                  <p class="d-lg-none d-xl-none">Instagram</p>
-                </a>
-              </li>
-              <li class="dropdown nav-item">
-                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
-                  <i class="fa fa-cogs d-lg-none d-xl-none"></i> Getting started
-                </a>
-                <div class="dropdown-menu dropdown-with-icons">
-                  <a href="{{url_for('logout')}}" class="dropdown-item">
-                    <i class="tim-icons icon-bullet-list-67"></i>Logout
-                  </a>
-                  <a href="examples/landing-page.html" class="dropdown-item">
-                    <i class="tim-icons icon-image-02"></i>Profile
-                  </a>
-                  <a href="examples/profile-page.html" class="dropdown-item">
-                    <i class="tim-icons icon-single-02"></i>Contact 
-                  </a>
-                </div>
-              </li>
-            </ul>
+            <div class="col-6 collapse-close text-right">
+              <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="tim-icons icon-simple-remove"></i>
+              </button>
+            </div>
           </div>
         </div>
-      </nav>
+        <ul class="navbar-nav">
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="Follow us on Twitter" data-placement="bottom" href="https://twitter.com" target="_blank">
+              <i class="fab fa-twitter"></i>
+              <p class="d-lg-none d-xl-none">Twitter</p>
+            </a>
+          </li>
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="Like us on Facebook" data-placement="bottom" href="https://www.facebook.com" target="_blank">
+              <i class="fab fa-facebook-square"></i>
+              <p class="d-lg-none d-xl-none">Facebook</p>
+            </a>
+          </li>
+          <li class="nav-item p-0">
+            <a class="nav-link" rel="tooltip" title="Follow us on Instagram" data-placement="bottom" href="https://www.instagram.com" target="_blank">
+              <i class="fab fa-instagram"></i>
+              <p class="d-lg-none d-xl-none">Instagram</p>
+            </a>
+          </li>
+          <li class="dropdown nav-item">
+            <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+              <i class="fa fa-cogs d-lg-none d-xl-none"></i> Getting started
+            </a>
+            <div class="dropdown-menu dropdown-with-icons">
+              <a href="{{url_for('logout')}}" class="dropdown-item">
+                <i class="tim-icons icon-bullet-list-67"></i>Logout
+              </a>
+              <a href="{{url_for('profile')}}" class="dropdown-item">
+                <i class="tim-icons icon-single-02"></i>Profile 
+              </a>
+              <a href="{{url_for('maincity')}}" class="dropdown-item">
+                <i class="tim-icons icon-image-02"></i>Ciudades
+              </a>
+              <a href="{{url_for('countrys')}}" class="dropdown-item">
+                <i class="tim-icons icon-image-02"></i>Paises
+              </a>
+              <a href="{{url_for('lenguas')}}" class="dropdown-item">
+                <i class="tim-icons icon-image-02"></i>Lenguas
+              </a>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
       <br>
       <br>
       <br>
@@ -110,9 +116,9 @@
                 <td>{{city[2] }}</td>
                 <td>{{city[3] }}</td>
                 <th>{{city[4] }}</th>
-                <th><a href="/edit/{{city[0]}}" class="btn btn-primary btn-sm">Edit</a>
+                <th><a href="/edit/{{city[0]}}" class="btn btn-primary btn-sm" onclick="return confirm('Estás seguro que deseas editar el registro?');">Edit</a>
                      |
-                    <a href="/destroy/{{city[0]}}" class="btn btn-primary btn-sm">Delete</a>
+                    <a href="/destroy/{{city[0]}}" class="btn btn-primary btn-sm" onclick="return confirm('Estás seguro que deseas eliminar el registro?');"s>Delete</a>
                 </th>
             </tr>   
             {% endfor %}
